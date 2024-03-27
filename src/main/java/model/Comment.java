@@ -12,8 +12,8 @@ public class Comment implements Serializable {
     private int id;
 
     @ManyToOne
-    @JoinColumn(name = "idClient")
-    private Client client;
+    @JoinColumn(name = "idUser")
+    private User user;
     private String msgDesc;
 
     public int getId() {
@@ -24,12 +24,12 @@ public class Comment implements Serializable {
         this.id = id;
     }
 
-    public Client getClient() {
-        return client;
+    public User getUser() {
+        return user;
     }
 
-    public void setClient(Client client) {
-        this.client = client;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public String getMsgDesc() {
@@ -44,7 +44,7 @@ public class Comment implements Serializable {
     public String toString() {
         return "Comment{" +
                 "id=" + id +
-                ", client=" + client +
+                ", user=" + user +
                 ", msgDesc='" + msgDesc + '\'' +
                 '}';
     }

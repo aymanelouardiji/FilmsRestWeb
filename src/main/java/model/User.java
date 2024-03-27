@@ -6,22 +6,22 @@ import java.io.Serializable;
 
 
 @Entity
-@Table(name = "client")
-public class Client implements Serializable {
-    private static final long serialVersionUID = 8364239647574512618L;
+@Table(name = "user")
+public class User implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idClient;
+    private int idUser;
     private String name;
     private String mail;
     private String mdp;
 
-    public int getIdClient() {
-        return idClient;
+    public int getIdUser() {
+        return idUser;
     }
 
-    public void setIdClient(int idClient) {
-        this.idClient = idClient;
+    public void setIdUser(int idUser) {
+        this.idUser = idUser;
     }
 
     public String getName() {
@@ -51,7 +51,7 @@ public class Client implements Serializable {
     @Override
     public String toString() {
         return "Client{" +
-                "id=" + idClient +
+                "id=" + idUser +
                 ", name='" + name + '\'' +
                 ", mail='" + mail + '\'' +
                 ", mdp='" + mdp + '\'' +

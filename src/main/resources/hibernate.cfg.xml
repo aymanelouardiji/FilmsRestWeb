@@ -5,14 +5,16 @@
 <hibernate-configuration>
     <session-factory>
         <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+        <property name="hibernate.connection.characterEncoding">UTF-8</property>
         <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/gstfilm</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
         <property name="hibernate.connection.username">root</property>
-         <property name="hibernate.connection.password"></property>
+        <property name="hibernate.connection.password"/>
         <property name="hibernate.current_session_context_class">thread</property>
         <property name="hibernate.enable_lazy_load_no_trans">true</property>
         <property name="hibernate.hbm2ddl.auto">update</property>
          <mapping class="model.Films" />
-         <mapping class="model.Client" />
+         <mapping class="model.User" />
          <mapping class="model.Admin" />
          <mapping class="model.Comment" />
     </session-factory>
