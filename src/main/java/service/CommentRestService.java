@@ -7,6 +7,7 @@ import orm.CommentService;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Path("comments")
@@ -17,7 +18,10 @@ public class CommentRestService {
     @Consumes(MediaType.APPLICATION_JSON)
     public boolean addComment (Comment comment){
         try{
-            cmntservice.addCmnt(comment);
+            int userId = comment.getUser().getIdUser();
+            int filmId = comment.getFilm().getId();
+
+            cmntservice.addCmnt(comment, userId, filmId);
             return true;
         }catch (Exception e){
             System.out.println("Erreur dans l'API Comment" + comment +" :" +e);
@@ -44,8 +48,8 @@ public class CommentRestService {
         } catch (Exception e) {
             System.out.println("Erreu dans l'API users:getAllComments \n"+e);
         }
-        Comment [] commentsArray = allComments.stream().toArray(Comment[]::new);
-        System.out.println("Comments Array = \n"+commentsArray);
+        Comment [] commentsArray = allComments.toArray(Comment[]::new);
+        System.out.println("Comments Array = \n"+ Arrays.toString(commentsArray));
         return commentsArray;
     }
 

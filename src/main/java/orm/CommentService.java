@@ -2,6 +2,8 @@
 package orm;
 
 import model.Comment;
+import model.Film;
+import model.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import util.HibernateUtil;
@@ -24,9 +26,16 @@ public class CommentService {
             throw new IllegalStateException("Could not create SessionFactory");
         }
     }
-    public void addCmnt(Comment comment){
+    public void addCmnt(Comment comment, int userId, int id){
         Session session = this.sessionFactory.getCurrentSession();
         session.beginTransaction();
+        User user = session.get(User.class, userId);
+        Film film = session.get(Film.class, id);
+
+        // Set the associated user and film to the comment
+        comment.setUser(user);
+        comment.setFilm(film);
+
         session.save(comment);
         session.getTransaction().commit();
         System.out.println("Comment added successfully, : "+comment);

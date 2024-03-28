@@ -16,7 +16,20 @@ public class Comment implements Serializable {
     @ManyToOne
     @JoinColumn(name = "idUser")
     private User user;
+
+    @ManyToOne
+    @JoinColumn(name = "filmId")
+    private Film film;
+
     private String msgDesc;
+
+    public Film getFilm() {
+        return film;
+    }
+
+    public void setFilm(Film film) {
+        this.film = film;
+    }
 
     public int getId() {
         return id;
@@ -46,7 +59,8 @@ public class Comment implements Serializable {
     public String toString() {
         return "Comment{" +
                 "id=" + id +
-                ", user=" + user +
+                ", user=" + user.getName() +
+                ", film=" + film.getName() +
                 ", msgDesc='" + msgDesc + '\'' +
                 '}';
     }
