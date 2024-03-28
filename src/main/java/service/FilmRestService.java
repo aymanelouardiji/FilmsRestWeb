@@ -54,7 +54,7 @@ public class FilmRestService {
         filmA.setDescrp(film.getDescrp());
         filmA.setPhoto(film.getPhoto());
         //return film;
-        return filmA;
+        return film;
     }
     @GET
     public Film[] getAllFilms(){
