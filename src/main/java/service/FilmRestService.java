@@ -9,7 +9,8 @@ import java.security.PublicKey;
 import java.util.ArrayList;
 import java.util.List;
 @Path("/films")
-
+@Consumes(MediaType.APPLICATION_JSON)
+@Produces(MediaType.APPLICATION_JSON)
 public class FilmRestService {
     FilmsService filmservice = new FilmsService();
 
@@ -37,15 +38,23 @@ public class FilmRestService {
 
     @GET
     @Path("/{id}")
-    public Film getFilm(@PathParam("id")int id){
+    @Produces(MediaType.APPLICATION_JSON)
+    public Film getFilm(@PathParam("id") int id) {
         Film film = null;
-        try{
+        try {
             film = filmservice.getFilmsById(id);
-        }catch (Exception exception){
-            System.out.println("Erreu dans l'API  get Film : "+id+"\n"+exception);
+        } catch (Exception exception) {
+            System.out.println("Error in the API getFilm: " + id + "\n" + exception);
         }
-        System.out.println("API GetUser "+film);
-        return film;
+        System.out.println("API getFilm: " + film);
+        Film filmA = new Film();
+        filmA.setId(film.getId());
+        filmA.setName(film.getName());
+        filmA.setCateg(film.getCateg());
+        filmA.setDescrp(film.getDescrp());
+        filmA.setPhoto(film.getPhoto());
+        //return film;
+        return filmA;
     }
     @GET
     public Film[] getAllFilms(){

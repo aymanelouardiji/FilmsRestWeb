@@ -1,14 +1,15 @@
 package model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
-
-
 import java.io.Serializable;
 
 @Entity
 @Table(name = "film")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+
 public class Film implements Serializable {
-    private static final long serialVersionUID = 8364239647574512618L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;

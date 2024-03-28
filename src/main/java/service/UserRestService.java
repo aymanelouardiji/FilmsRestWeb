@@ -11,6 +11,8 @@ import java.util.List;
 
 
 @Path("/users")
+@Consumes(MediaType.APPLICATION_JSON)
+@Produces(MediaType.APPLICATION_JSON)
 public class UserRestService {
     UserService usrv = new UserService();
 

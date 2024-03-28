@@ -1,10 +1,12 @@
 package model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
 @Entity
 @Table(name="admin")
+
 public class Admin implements Serializable{
 
     @Id
