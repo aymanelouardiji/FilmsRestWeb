@@ -1,8 +1,10 @@
 package orm;
 
+import model.Admin;
 import model.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import util.HibernateUtil;
 
 import java.util.List;
@@ -54,5 +56,17 @@ public class UserService {
         }
         session.getTransaction().commit();
         logger.info("User deleted successfully, User details="+info);
+    }
+
+    public User getUserByEmailAndPass(String mail, String mdp){
+        Session session = this.getSessionFactory().getCurrentSession();
+        session.beginTransaction();
+        Query query =session.createQuery("from User where mail = :mail and mdp = :mdp");
+        query.setParameter("EmailUser", mail);
+        query.setParameter("Password",mdp);
+        User user = (User) query.uniqueResult();
+        session.close();
+        return user;
+
     }
 }

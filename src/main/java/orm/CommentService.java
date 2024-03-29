@@ -26,16 +26,9 @@ public class CommentService {
             throw new IllegalStateException("Could not create SessionFactory");
         }
     }
-    public void addCmnt(Comment comment, int userId, int id){
+    public void addCmnt(Comment comment){
         Session session = this.sessionFactory.getCurrentSession();
         session.beginTransaction();
-        User user = session.get(User.class, userId);
-        Film film = session.get(Film.class, id);
-
-        // Set the associated user and film to the comment
-        comment.setUser(user);
-        comment.setFilm(film);
-
         session.save(comment);
         session.getTransaction().commit();
         System.out.println("Comment added successfully, : "+comment);
@@ -67,5 +60,21 @@ public class CommentService {
         session.getTransaction().commit();
         logger.info("Comment Removed Successfully, Comment details = " +comment);
         return comment;
+    }
+    public User getUserId(long id) {
+        Session session = this.sessionFactory.getCurrentSession();
+        session.beginTransaction();
+        User user =  session.getReference(User.class, Long.valueOf(id));
+        session.getTransaction().commit();
+        logger.info("User loaded successfully, User details="+user);
+        return user;
+    }
+    public Film getFilmsById(int idFilm){
+        Session session = this.sessionFactory.getCurrentSession();
+        session.beginTransaction();
+        Film film = session.getReference(Film.class, Integer.valueOf(idFilm));
+        session.getTransaction().commit();
+        System.out.println("THIS IS THE YOUR FILMS DETAILS =" + film);
+        return film;
     }
 }

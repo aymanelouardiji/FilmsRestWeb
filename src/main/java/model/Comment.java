@@ -1,6 +1,8 @@
 package model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -15,10 +17,12 @@ public class Comment implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "idUser")
+    @JsonIgnore
     private User user;
 
     @ManyToOne
-    @JoinColumn(name = "filmId")
+    @JoinColumn(name = "idFilm")
+    @JsonIgnore
     private Film film;
 
     private String msgDesc;
@@ -55,13 +59,5 @@ public class Comment implements Serializable {
         this.msgDesc = msgDesc;
     }
 
-    @Override
-    public String toString() {
-        return "Comment{" +
-                "id=" + id +
-                ", user=" + user.getName() +
-                ", film=" + film.getName() +
-                ", msgDesc='" + msgDesc + '\'' +
-                '}';
-    }
+
 }

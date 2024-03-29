@@ -25,26 +25,26 @@ public class FilmRestService {
         return false;
     }
     @DELETE
-    @Path("/{id}")
-    public boolean deleteFilm(@PathParam("id")int id){
+    @Path("/{idFilm}")
+    public boolean deleteFilm(@PathParam("idFilm")int idFilm){
         try{
-            filmservice.removeFilm(id);
+            filmservice.removeFilm(idFilm);
             return true;
         }catch (Exception exception){
-            System.out.println("Erreu dans l'API Delete Film :  "+id+"\n"+exception);
+            System.out.println("Erreu dans l'API Delete Film :  "+idFilm+"\n"+exception);
             return false;
         }
     }
 
     @GET
-    @Path("/{id}")
+    @Path("/{idFilm}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Film getFilm(@PathParam("id") int id) {
+    public Film getFilm(@PathParam("idFilm") int idFilm) {
         Film film = null;
         try {
-            film = filmservice.getFilmsById(id);
+            film = filmservice.getFilmsById(idFilm);
         } catch (Exception exception) {
-            System.out.println("Error in the API getFilm: " + id + "\n" + exception);
+            System.out.println("Error in the API getFilm: " + idFilm + "\n" + exception);
         }
         System.out.println("API getFilm: " + film);
         Film filmA = new Film();
@@ -67,6 +67,22 @@ public class FilmRestService {
         Film [] filmsArray = allFilms.stream().toArray(Film[]::new);
         System.out.println("Films Array = " +filmsArray);
         return filmsArray;
+    }
+    @PUT
+    @Path("/{idFilm}")
+    public boolean updateFilm(@PathParam("idFilm") int idFilm, Film film){
+        try{
+            Film filmmm = filmservice.getFilmsById(idFilm);
+            filmmm.setId(filmmm.getId());
+            filmmm.setName(film.getName());
+            filmmm.setDescrp(film.getDescrp());
+            filmmm.setCateg(film.getCateg());
+            filmservice.updateFilm(filmmm);
+            return true;
+        }catch (Exception e){
+            System.out.println("Erreur dans l'API UpdateFilm : "+filmservice);
+            return false;
+        }
     }
 
 }

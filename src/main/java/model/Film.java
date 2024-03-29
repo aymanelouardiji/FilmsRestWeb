@@ -1,5 +1,6 @@
 package model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import java.io.Serializable;
@@ -7,19 +8,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "film")
+@Table(name ="film")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 
 public class Film implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private int idFilm;
     private String name;
     private String categ;
     private String descrp;
     private String photo;
-    @OneToMany(mappedBy = "film", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "film")
     private List<Comment> comments = new ArrayList<>();
 
     public List<Comment> getComments() {
@@ -31,11 +32,11 @@ public class Film implements Serializable {
     }
 
     public int getId() {
-        return id;
+        return idFilm;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setId(int idFilm) {
+        this.idFilm = idFilm;
     }
 
     public String getName() {
@@ -70,5 +71,5 @@ public class Film implements Serializable {
         this.photo = photo;
     }
     @Override
-    public String toString(){return id + "=>" + name + "=>" +categ ; }
+    public String toString(){return idFilm + "=>" + name + "=>" +categ ; }
 }

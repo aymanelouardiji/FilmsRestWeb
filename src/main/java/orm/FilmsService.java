@@ -43,18 +43,18 @@ public class FilmsService {
         session.getTransaction().commit();
         return filmsList;
     }
-    public Film getFilmsById(int id){
+    public Film getFilmsById(int idFilm){
         Session session = this.sessionFactory.getCurrentSession();
         session.beginTransaction();
-        Film film = session.getReference(Film.class, Integer.valueOf(id));
+        Film film = session.getReference(Film.class, Integer.valueOf(idFilm));
         session.getTransaction().commit();
         System.out.println("THIS IS THE YOUR FILMS DETAILS =" + film);
         return film;
     }
-    public void removeFilm(int id){
+    public void removeFilm(int idFilm){
         Session session = this.sessionFactory.getCurrentSession();
         session.beginTransaction();
-        Film film = session.getReference(Film.class, Integer.valueOf(id));
+        Film film = session.getReference(Film.class, Integer.valueOf(idFilm));
         String info = "";
         if (null != film){
             info = film.toString();

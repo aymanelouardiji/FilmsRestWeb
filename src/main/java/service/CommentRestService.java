@@ -2,6 +2,7 @@ package service;
 
 
 import model.Comment;
+import model.RequestComment;
 import orm.CommentService;
 
 import javax.ws.rs.*;
@@ -16,12 +17,13 @@ public class CommentRestService {
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
-    public boolean addComment (Comment comment){
+    public boolean addComment (RequestComment comment){
         try{
-            int userId = comment.getUser().getIdUser();
-            int filmId = comment.getFilm().getId();
-
-            cmntservice.addCmnt(comment, userId, filmId);
+            Comment com = new Comment();
+            com.setUser(cmntservice.getUserId(comment.getIdUser()));
+            com.setFilm(cmntservice.getFilmsById(comment.getIdFilm()));
+            com.setMsgDesc(comment.getMsgDesc());
+            cmntservice.addCmnt(com);
             return true;
         }catch (Exception e){
             System.out.println("Erreur dans l'API Comment" + comment +" :" +e);
