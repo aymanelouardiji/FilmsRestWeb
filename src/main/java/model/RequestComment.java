@@ -1,7 +1,7 @@
 package model;
 
 public class RequestComment {
-    private long idUser;
+    private int idUser;
     private int idFilm;
     private String msgDesc;
 
@@ -9,7 +9,7 @@ public class RequestComment {
         return idUser;
     }
 
-    public void setIdUser(long idUser) {
+    public void setIdUser(int idUser) {
         this.idUser = idUser;
     }
 

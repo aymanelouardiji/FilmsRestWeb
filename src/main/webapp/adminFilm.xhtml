@@ -37,7 +37,7 @@
 								<p:dataExporter type="pdf" target="tblProds" fileName="Catégories" />
 							</h:commandLink>
 						</f:facet>
-						<!-- <f:facet name="header">Liste des Films</f:facet>
+						<f:facet name="header">Liste des Films</f:facet>
 						<p:column selectionMode="single" width="4%" />
 						<p:column headerText="ID"  width="5%">
 							<h:outputText value="#{prod.id}" />
@@ -73,28 +73,11 @@
 								</p:selectCheckboxMenu>
 							</f:facet>
 							<h:outputText value="#{prod.categorie.nom}" />
-						</p:column> -->
-						<f:facet name="header">Liste des Films</f:facet>
-						<p:column selectionMode="single" width="4%" />
-						<p:column headerText="ID"  width="5%">
-							<h:outputText value="1" />
 						</p:column>
-						<p:column headerText="Nom de Film"  width="20%"
-								filterBy=""
-								filterMatchMode="contains">
-							<h:outputText value="Game of thrones" />
-						</p:column>
-						<p:column headerText="Photo"  width="30%">
-							<p:graphicImage value="resources/photos/gameofthrones.jpg"
-									height="130" width="90"/>
-						</p:column>
-						<p:column headerText="Description"  width="50%"
-								filterMatchMode="contains">
-							<h:outputText value="gggggg" />
-						</p:column>
-						<!-- <p:column headerText="Categorie"  width="30%">
+
+						 <p:column headerText="Categorie"  width="30%">
 							<h:outputText value="#{prod.quantite}" />
-						</p:column> -->
+						</p:column>
 						
 						
 						

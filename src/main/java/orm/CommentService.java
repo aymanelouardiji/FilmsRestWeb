@@ -61,10 +61,10 @@ public class CommentService {
         logger.info("Comment Removed Successfully, Comment details = " +comment);
         return comment;
     }
-    public User getUserId(long id) {
+    public User getUserId(int id) {
         Session session = this.sessionFactory.getCurrentSession();
         session.beginTransaction();
-        User user =  session.getReference(User.class, Long.valueOf(id));
+        User user =  session.getReference(User.class, Integer.valueOf(id));
         session.getTransaction().commit();
         logger.info("User loaded successfully, User details="+user);
         return user;

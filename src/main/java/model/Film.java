@@ -2,6 +2,7 @@ package model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -20,7 +21,8 @@ public class Film implements Serializable {
     private String categ;
     private String descrp;
     private String photo;
-    @OneToMany(mappedBy = "film")
+    /*@OneToMany(mappedBy = "film")
+    @JsonManagedReference
     private List<Comment> comments = new ArrayList<>();
 
     public List<Comment> getComments() {
@@ -29,7 +31,7 @@ public class Film implements Serializable {
 
     public void setComments(List<Comment> comments) {
         this.comments = comments;
-    }
+    }*/
 
     public int getId() {
         return idFilm;

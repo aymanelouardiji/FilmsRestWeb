@@ -20,7 +20,7 @@ public class CommentRestService {
     public boolean addComment (RequestComment comment){
         try{
             Comment com = new Comment();
-            com.setUser(cmntservice.getUserId(comment.getIdUser()));
+            com.setUser(cmntservice.getUserId((int) comment.getIdUser()));
             com.setFilm(cmntservice.getFilmsById(comment.getIdFilm()));
             com.setMsgDesc(comment.getMsgDesc());
             cmntservice.addCmnt(com);
@@ -42,17 +42,22 @@ public class CommentRestService {
        }
     }
     @GET
+    @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public Comment[] getAllComments() {
         List<Comment> allComments = new ArrayList<>();
         try {
             allComments = cmntservice.getAllComments();
         } catch (Exception e) {
-            System.out.println("Erreu dans l'API users:getAllComments \n"+e);
+            System.out.println("Error in API users:getAllComments \n" + e);
         }
-        Comment [] commentsArray = allComments.toArray(Comment[]::new);
-        System.out.println("Comments Array = \n"+ Arrays.toString(commentsArray));
+
+        Comment[] commentsArray = new Comment[allComments.size()];
+        allComments.toArray(commentsArray);
+
+        System.out.println("Comments Array = \n" + Arrays.toString(commentsArray));
         return commentsArray;
     }
+
 
 }

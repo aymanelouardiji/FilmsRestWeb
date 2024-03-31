@@ -2,6 +2,7 @@ package model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -23,7 +24,8 @@ public class User implements Serializable {
     private String mdp;
 
 
-    @OneToMany(mappedBy = "user")
+    /*@OneToMany(mappedBy = "user")
+    @JsonManagedReference
     private List<Comment> comments = new ArrayList<>();
 
     public List<Comment> getComments() {
@@ -32,7 +34,7 @@ public class User implements Serializable {
 
     public void setComments(List<Comment> comments) {
         this.comments = comments;
-    }
+    }*/
 
     public int getIdUser() {
         return idUser;
