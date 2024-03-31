@@ -9,16 +9,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d42a97db-dea1-46bd-8e3c-cb865c63a6a2" name="Changes" comment="new comm">
+    <list default="true" id="d42a97db-dea1-46bd-8e3c-cb865c63a6a2" name="Changes" comment="some new cahnges in adminbean and film model">
+      <change afterPath="$PROJECT_DIR$/src/main/java/beans/Dash.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/dash.xhtml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/beans/AdminBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/beans/AdminBean.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/Film.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Film.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/RequestComment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/RequestComment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/orm/CommentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/orm/CommentService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/service/CommentRestService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/CommentRestService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/adminFilm.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/adminFilm.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/orm/FilmsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/orm/FilmsService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/index.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index.xhtml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,6 +25,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="jsf" />
       </list>
     </option>
   </component>
@@ -54,7 +51,6 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "main",
     "last_opened_file_path": "C:/Users/HP/Desktop/NttData/FilmsRestWeb/src/main/java",
@@ -137,7 +133,7 @@
       <workItem from="1711615779794" duration="14317000" />
       <workItem from="1711632670601" duration="8215000" />
       <workItem from="1711701955672" duration="13935000" />
-      <workItem from="1711831184516" duration="11077000" />
+      <workItem from="1711831184516" duration="16010000" />
     </task>
     <task id="LOCAL-00001" summary="new changes">
       <option name="closed" value="true" />
@@ -235,7 +231,15 @@
       <option name="project" value="LOCAL" />
       <updated>1711835850399</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="some new cahnges in adminbean and film model">
+      <option name="closed" value="true" />
+      <created>1711895646330</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1711895646330</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -249,6 +253,7 @@
     <MESSAGE value="Some New Commit" />
     <MESSAGE value="Comment Service" />
     <MESSAGE value="new comm" />
-    <option name="LAST_COMMIT_MESSAGE" value="new comm" />
+    <MESSAGE value="some new cahnges in adminbean and film model" />
+    <option name="LAST_COMMIT_MESSAGE" value="some new cahnges in adminbean and film model" />
   </component>
 </project>

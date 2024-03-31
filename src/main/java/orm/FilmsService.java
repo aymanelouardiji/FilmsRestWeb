@@ -1,10 +1,14 @@
 package orm;
 
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.Persistence;
 import model.Film;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import util.HibernateUtil;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -62,5 +66,23 @@ public class FilmsService {
         }
         session.getTransaction().commit();
         logger.info("User deleted successfully, User details="+info);
+    }
+
+    public List<String> getAllCategories() {
+        Session session = this.sessionFactory.getCurrentSession();
+        session.beginTransaction();
+        List<String> allCategories = session.createQuery("SELECT DISTINCT f.categ FROM Film f", String.class).list();
+        session.getTransaction().commit();
+        return allCategories;
+    }
+
+    public int getFilmCountByCategory(String category) {
+        Session session = this.sessionFactory.getCurrentSession();
+        session.beginTransaction();
+        long count = (Long) session.createQuery("SELECT COUNT(f) FROM Film f WHERE f.categ = :category")
+                .setParameter("category", category)
+                .uniqueResult();
+        session.getTransaction().commit();
+        return (int) count;
     }
 }

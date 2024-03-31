@@ -1,0 +1,22 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui" template="./index.xhtml">
+    <ui:define name="title">
+        <ui:insert name="adminTitle">Dashboard</ui:insert>
+    </ui:define>
+
+    <ui:define name="contenu">
+        <h:panelGrid>
+            <h1>Films by Category</h1>
+            <p:row id="rowBarChart">
+                <h:form id="FormStatsProdsBC">
+                    <p:chart id="filmsBarChart" type="bar"
+                             model="#{dash.filmByCategoryBcm}" widgetVar="prodsBarChart"
+                             style="width: 800px; height: 500px;" />
+                </h:form>
+            </p:row>
+        </h:panelGrid>
+    </ui:define>
+</ui:composition>
