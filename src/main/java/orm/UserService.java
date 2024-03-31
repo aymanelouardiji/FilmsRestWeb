@@ -45,6 +45,13 @@ public class UserService {
         logger.info("User loaded successfully, User details="+user);
         return user;
     }
+    public void updateUser(User user) {
+        Session session = this.sessionFactory.getCurrentSession();
+        session.beginTransaction();
+        session.merge(user);
+        session.getTransaction().commit();
+        logger.info("User updated successfully, User Details="+user);
+    }
     public void removeUser(int id) {
         Session session = this.sessionFactory.getCurrentSession();
         session.beginTransaction();

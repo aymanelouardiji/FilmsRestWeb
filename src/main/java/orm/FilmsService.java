@@ -67,6 +67,7 @@ public class FilmsService {
         session.getTransaction().commit();
         logger.info("User deleted successfully, User details="+info);
     }
+    
 
     public List<String> getAllCategories() {
         Session session = this.sessionFactory.getCurrentSession();

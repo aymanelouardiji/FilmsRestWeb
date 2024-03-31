@@ -9,7 +9,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d42a97db-dea1-46bd-8e3c-cb865c63a6a2" name="Changes" comment="some new cahnges in adminbean and film model" />
+    <list default="true" id="d42a97db-dea1-46bd-8e3c-cb865c63a6a2" name="Changes" comment="some new cahnges in adminbean and film model">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/orm/FilmsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/orm/FilmsService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/orm/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/orm/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/service/FilmRestService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/FilmRestService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/service/UserRestService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/UserRestService.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -63,6 +69,8 @@
       <recent name="C:\Users\HP\Desktop\NttData\FilmsRestWeb\src\main" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\HP\Desktop\NttData\FilmsRestWeb\src\main" />
+      <recent name="C:\Users\HP\Desktop\NttData\FilmsRestWeb" />
       <recent name="C:\Users\HP\Desktop\NttData\FilmsRestWeb\src\main\resources" />
     </key>
   </component>
@@ -127,7 +135,7 @@
       <workItem from="1711615779794" duration="14317000" />
       <workItem from="1711632670601" duration="8215000" />
       <workItem from="1711701955672" duration="13935000" />
-      <workItem from="1711831184516" duration="16462000" />
+      <workItem from="1711831184516" duration="18087000" />
     </task>
     <task id="LOCAL-00001" summary="new changes">
       <option name="closed" value="true" />
@@ -241,7 +249,15 @@
       <option name="project" value="LOCAL" />
       <updated>1711921213209</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="some new cahnges in adminbean and film model">
+      <option name="closed" value="true" />
+      <created>1711921583725</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1711921583725</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

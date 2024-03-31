@@ -70,17 +70,17 @@ public class FilmRestService {
     }
     @PUT
     @Path("/{idFilm}")
-    public boolean updateFilm(@PathParam("idFilm") int idFilm, Film film){
-        try{
-            Film filmmm = filmservice.getFilmsById(idFilm);
-            filmmm.setId(filmmm.getId());
-            filmmm.setName(film.getName());
-            filmmm.setDescrp(film.getDescrp());
-            filmmm.setCateg(film.getCateg());
-            filmservice.updateFilm(filmmm);
+    public boolean updateFilm(@PathParam("idFilm") int idFilm, Film film) {
+        try {
+            Film oFilm = filmservice.getFilmsById(idFilm);
+            oFilm.setId(film.getId());
+            oFilm.setName(film.getName());
+            oFilm.setCateg(film.getCateg());
+            oFilm.setDescrp(film.getDescrp());
+            filmservice.updateFilm(oFilm);
             return true;
-        }catch (Exception e){
-            System.out.println("Erreur dans l'API UpdateFilm : "+filmservice);
+        } catch (Exception e) {
+            System.out.println("Erreu dans l'API users:update Film avec : "+film+"\n"+e);
             return false;
         }
     }

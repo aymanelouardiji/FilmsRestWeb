@@ -67,4 +67,20 @@ public class UserRestService {
         System.out.println("Users Array = \n"+usersArray);
         return usersArray;
     }
+    @PUT
+    @Path("/{idUser}")
+    public boolean updateUser(@PathParam("idUser") int idUser, User user) {
+        try {
+            User aUser = usrv.getUserById(idUser);
+            aUser.setIdUser(user.getIdUser());
+            aUser.setName(user.getName());
+            aUser.setMdp(user.getMdp());
+            aUser.setMail(user.getMail());
+            usrv.updateUser(aUser);
+            return true;
+        } catch (Exception e) {
+            System.out.println("Erreu dans l'API users:updateUser avec : "+user+"\n"+e);
+            return false;
+        }
+    }
 }
