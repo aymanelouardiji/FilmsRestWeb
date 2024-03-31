@@ -1,5 +1,5 @@
 Film App Dashboard
-Overview
+Overview    
 Film App Dashboard is a web application built using JavaServer Faces (JSF) and PrimeFaces framework for creating dynamic and interactive data visualizations. It provides a dashboard interface to visualize film data categorized by different categories. The application also utilizes beans and web services to interact with both the front-end and back-end components.
 
 Features
