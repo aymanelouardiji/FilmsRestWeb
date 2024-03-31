@@ -1,0 +1,51 @@
+<ui:composition 
+	  xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+	template="./index.xhtml">
+	<h:head></h:head>
+	<ui:define name="title">
+   		Details : <ui:insert name="adminTitle"> Details Film</ui:insert>
+   	</ui:define>
+   	
+   <ui:define name="contenu">
+			<h1>Gestion des utilisateurs</h1>
+		<h:panelGrid >
+			<p:row id="rowAllComments">
+				<p:column>
+				<h:form id="formAllComments">
+					 <h:commandButton value="Get All Comments" action="#{userRestBean.getAllComments()}"/>
+					 <p:dataTable id="tblComments" var="user" value="#{userRestBean.listComments}"
+						 resizableColumns="true"
+						 editable="true"
+						paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}  {Exporters}"
+						paginator="true" rows="5" style="margin-bottom:20px"
+                        rowsPerPageTemplate="5,10,{ShowAll|'Afficher tout'}"
+						emptyMessage="Aucun Utilisateur enregistré"
+						widgetVar="usersTable">
+						<f:facet name="{Exporters}">
+							
+						</f:facet>
+						<f:facet name="header">Liste des Commentaires</f:facet>
+						<p:column headerText="ID" width="10%">
+							<h:outputText value="#{user.id}" />
+						</p:column>
+						<p:column headerText="Nom" width="45%">
+							<h:outputText value="#{user.name}" />
+						</p:column>
+						<p:column headerText="Commentaire" width="45%">
+							<h:outputText value="#{user.photo}" />
+						</p:column>					
+						<f:facet name="footer">				
+							
+						</f:facet>
+					</p:dataTable>
+				</h:form>
+				</p:column>
+			</p:row>
+			
+		</h:panelGrid>
+	</ui:define>
+</ui:composition>

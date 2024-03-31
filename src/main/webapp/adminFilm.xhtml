@@ -7,25 +7,24 @@
 	template="./index.xhtml">
 	<h:head></h:head>
 	<ui:define name="title">
-   		Administration : <ui:insert name="adminTitle">Gestion des Films</ui:insert>
+   		Administration : <ui:insert name="adminTitle">Gestion des produits</ui:insert>
    	</ui:define>
    	
    <ui:define name="contenu">
 		<h:panelGrid>
 			<p:row>
-			<h:outputText value="#{adminFilms.path}"></h:outputText>
 				<h:form id="FormTableProds">
 <!-- 					<p:growl id="growl" showDetail="true" /> -->
-					<p:dataTable id="tblFilms" var="prod" value="#{adminFilms.allProducts}"
+					<p:dataTable id="tblFilms" var="film" value="#{userRestBean.listFilms}"
 						 resizableColumns="true"
 						 editable="true"
 						paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} {Exporters}"
 						paginator="true" rows="5" style="margin-bottom:20px"
 						rowsPerPageTemplate="5,10,{ShowAll|'Afficher tout'}"
-						selection="#{adminFilms.selectedFilm}" rowKey="#{film.id}"
-						emptyMessage="Aucun Film enregistré"
-						filteredValue="#{adminProduits.filteredProducts}"
-						widgetVar="prodsTable">
+						selection="#{adminBean.selectedFilm}" rowKey="#{film.id}"
+						emptyMessage="Aucun Produit enregistré"
+						
+						widgetVar="filmsTable">
 						<f:facet name="{Exporters}">
 							<h:commandLink>
 								<p:graphicImage name="img/excel.png" width="24" />
@@ -37,148 +36,90 @@
 								<p:dataExporter type="pdf" target="tblProds" fileName="Catégories" />
 							</h:commandLink>
 						</f:facet>
-						<f:facet name="header">Liste des Films</f:facet>
+						<f:facet name="header">Liste des Produits</f:facet>
 						<p:column selectionMode="single" width="4%" />
 						<p:column headerText="ID"  width="5%">
-							<h:outputText value="#{prod.id}" />
+							<h:outputText value="#{film.id}" />
 						</p:column>
-						<p:column headerText="Nom de Film"  width="20%"
-								filterBy="#{prod.designation}"
-								filterMatchMode="contains">
-							<h:outputText value="#{prod.designation}" />
+						<p:column headerText="Nom"  width="8%">
+							<h:outputText value="#{film.name}" />
 						</p:column>
 						<p:column headerText="Photo"  width="30%">
-							<p:graphicImage value="resources/photos/#{prod.photo}"
+							<p:graphicImage value="resources/photos/#{film.photo}"
 									height="100" width="80"/>
 						</p:column>
-						<p:column headerText="Description"  width="50%"
+						
+						<p:column headerText="Description"  width="40%">
+							<h:outputText value="#{film.descrp}" />
+						</p:column>
+						<p:column headerText="Categorie"  width="8%"
 								filterMatchMode="contains">
-							<h:outputText value="#{prod.prix}" />
-						</p:column>
-						<p:column headerText="Categorie"  width="30%">
-							<h:outputText value="#{prod.quantite}" />
+							<h:outputText value="#{film.categ}" />
 						</p:column>
 						
 						
 						
-						<p:column headerText="Catégorie"  width="20%"
-							filterBy="#{prod.categorie.nom}"
-							filterMatchMode="in">
-							<f:facet name="filter">
-								<p:selectCheckboxMenu label="Catégories"
-									onchange="PF('prodsTable').filter()" panelStyle="width:250px"
-									scrollHeight="150">
-									<f:selectItems value="#{adminProduits.allCategories}" var="categ"
-                               		itemValue="#{categ.nom}" itemLabel="#{categ.nom}" />
-								</p:selectCheckboxMenu>
-							</f:facet>
-							<h:outputText value="#{prod.categorie.nom}" />
-						</p:column>
-
-						 <p:column headerText="Categorie"  width="30%">
-							<h:outputText value="#{prod.quantite}" />
-						</p:column>
 						
-						
-						
-						<p:column headerText="Catégorie"  width="20%"
-							filterBy="#{film.categorie}"
-							filterMatchMode="in">
-							<f:facet name="filter">
-								<p:selectCheckboxMenu label="Catégories"
-									onchange="PF('prodsTable').filter()" panelStyle="width:250px"
-									scrollHeight="150">
-									<f:selectItems value="#{adminFilms.allCategories}" var="categ"
-                               		itemValue="#{film.nom}" itemLabel="#{categ.nom}" />
-								</p:selectCheckboxMenu>
-							</f:facet>
-							<h:outputText value="#{film.categorie.nom}" />
-						</p:column>
 						<f:facet name="footer">
 						
-							<p:commandButton id="editProd" value="Editer"
-							action="#{adminFilms.edit}" update="formEdit"
-								ajax="false" icon="ui-icon-circle-check"/>
-							<p:commandButton id="deleteProd" value="! Supprimer !"
-								action="#{adminFilms.deleteSelectedFilms}" update="growl"
-								ajax="false" icon="ui-icon-circle-minus"/>
-							<p:commandButton id="addProd" value="Ajouter"
-								action="#{adminFilms.prepareAdd}"
-								ajax="false" icon="ui-icon-circle-plus"/>
+							
 						
 						</f:facet>
-						<p:ajax event="rowSelect"/>
-						<p:ajax event="rowUnselect"/>
+						
 					</p:dataTable>
 				</h:form>
 			</p:row>
-			<!-- <p:row id="rowEdit" >
-			<p:panelGrid columns="2">
-			<p:column>
-				<h:form id="formEdit" enctype="multipart/form-data"
-				rendered="#{adminProduits.editMode}">
-					<p:panel header="Mise à jour des données">
-						<h:panelGrid columns="2" id="grid">
-							<h:outputLabel value="Nom de Film : *" for="txt_designation" />
-							<p:inputText id="txt_designation" value="#{adminProduits.selectedProduct.designation}"
+			<p:row id="rowOneUser">
+			<p:column width="45%">
+				<h:form id="formAddUser">
+					 <p:panel header="Ajout d'un Nouvel Utilisateur">
+						<h:panelGrid columns="2" id="gridAdd">
+							<h:outputLabel value="Nom : *" for="txt_nameAdd" />
+							<p:inputText id="txt_nameAdd" value="#{adminBean.filmToAdd.name}"
 								required="true" />
-							<h:outputLabel value="Description : *" for="txt_prix" />
-							<p:inputText id="txt_prix" value="#{adminProduits.selectedProduct.prix}"
+							<h:outputLabel value="Description : *" for="txt_descrpAdd" />
+							<p:inputText id="txt_descrpAdd" value="#{adminBean.filmToAdd.descrp}"
 									required="true" />
-							
+							<h:outputLabel value="Categorie : *" for="txt_categpAdd" />
+							<p:inputText id="txt_categpAdd" value="#{adminBean.filmToAdd.categ}"
+									required="true" />
 							<h:outputLabel value="Photo : *" for="file_photo" />
-							<p:fileUpload value="#{adminProduits.file}" id="file_photo"
-										fileUploadListener="#{adminProduits.upload}" 
+							<p:fileUpload value="#{adminBean.file}" id="file_photo"
+										fileUploadListener="#{adminBean.upload}" 
 										mode="simple" skinSimple="true" ajax="false"
 							            description="Choisir un Fichier"/>
-							<h:outputLabel value="Catégorie :" for="sel_categ" />
-							<h:selectOneMenu id="sel_categ" converter="categorieConverter" value="#{adminProduits.selectedProduct.categorie}">
-                				<f:selectItems value="#{adminProduits.allCategories}" var="categ"
-                               		itemValue="#{categ}" itemLabel="#{categ.nom}"/>
-            				</h:selectOneMenu>	
-							<p:commandButton id="btn_cancel" value="Annuler"
-							action="#{adminProduits.cancelUpdate}"  ajax="false"/>
-							<p:commandButton id="btn_update" value="Modifier"
-								action="#{adminProduits.updateProduct}" update="growl" ajax="false"/>
+							<p:commandButton id="btn_add" value="Ajouter"
+								action="#{adminBean.addFilm}" ajax="false"/>
 						</h:panelGrid>
 					</p:panel>
 				</h:form>
-				</p:column>
-				<p:column rendered="#{adminProduits.editMode}">
-					<p>Photo Actuelle</p>
-					<p:graphicImage value="resources/photos/#{adminProduits.selectedProduct.photo}"
-									height="200" width="120"/>
-				</p:column>
-			</p:panelGrid>
-			</p:row> -->
-			<p:row id="rowNew" >
-				<h:form id="formNew" enctype="multipart/form-data" 
-				rendered="#{adminFilms.addMode}">
-					<p:panel header="Ajout de nouvelles films">
-						<h:panelGrid columns="2" id="grid">
-							<h:outputLabel value="Nom de Film : *" for="txt_nomAdd" />
-							<p:inputText id="txt_nomAdd" value="#{adminFilms.filmToAdd.nom}"
+			</p:column>
+			<p:column width="45%">
+				<h:form id="formUpdateDeleteUser">
+					 <p:panel header="Mise à jour des données">
+					 <h:panelGrid columns="2" id="gridAdd">
+							<h:outputLabel value="Nom : *" for="txt_nameAdd" />
+							<p:inputText id="txt_nameAdd" value="#{adminBean.selectedFilm.name}"
 								required="true" />
-							<h:outputLabel value="Description : *" for="txt_descriptionAdd" />
-							<p:inputText id="txt_prixAdd" value="#{adminFilms.descriptionToAdd.desc}"
+							<h:outputLabel value="Description : *" for="txt_descrpAdd" />
+							<p:inputText id="txt_descrpAdd" value="#{adminBean.selectedFilm.descrp}"
 									required="true" />
-							
-							<h:outputLabel value="Catégorie :  " for="sel_categAdd" />
-							<p:inputText id="txt_categAdd" value="#{adminFilms.categToAdd.desc}"
+							<h:outputLabel value="Categorie : *" for="txt_categpAdd" />
+							<p:inputText id="txt_categpAdd" value="#{adminBean.selectedFilm.categ}"
 									required="true" />
-                				
 							<h:outputLabel value="Photo : *" for="file_photo" />
-							<p:fileUpload value="#{adminFilms.file}" id="file_photo"
-										fileUploadListener="#{adminFilms.upload}" 
+							<p:fileUpload value="#{adminBean.file}" id="file_photo"
+										fileUploadListener="#{adminBean.upload}" 
 										mode="simple" skinSimple="true" ajax="false"
 							            description="Choisir un Fichier"/>
-							<p:commandButton id="btn_cancelAdd" value="Annuler"
-							action="#{adminFilms.cancelAdd}"  ajax="false"/>
-							<p:commandButton id="btn_Add" value="Ajouter"
-								action="#{adminFilms.addFilm}" update="growl" ajax="false"/>
+							<p:commandButton id="btn_add" value="Modifier"
+								action="#{adminBean.updateFilm}" ajax="false"/>
 						</h:panelGrid>
+					
+					 
 					</p:panel>
 				</h:form>
+			</p:column>
 			</p:row>
 		</h:panelGrid>
 	</ui:define>

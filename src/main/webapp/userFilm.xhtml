@@ -1,0 +1,66 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="./index.xhtml">
+
+	<ui:define name="title">
+   		Administration : <ui:insert name="adminTitle">Gestion des utilisateurs</ui:insert>
+	</ui:define>
+
+	<ui:define name="contenu">
+			<h1>Gestion des utilisateurs</h1>
+		<h:panelGrid >
+			<p:row id="rowAllFilms">
+				<p:column>
+				<h:form id="formAllFilms">
+					 <h:commandButton value="Get All Films" action="#{userRestBean.getAllFilms()}"/>
+					 <p:dataTable id="tblFilms" var="user" value="#{userRestBean.listFilms}"
+						 resizableColumns="true"
+						 editable="true"
+						paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}  {Exporters}"
+						paginator="true" rows="5" style="margin-bottom:20px"
+                        rowsPerPageTemplate="5,10,{ShowAll|'Afficher tout'}"
+						emptyMessage="Aucun Utilisateur enregistré"
+						widgetVar="usersTable">
+						<f:facet name="{Exporters}">
+							<h:commandLink>
+								<p:graphicImage name="img/excel.png" width="24" />
+								<p:dataExporter type="xls" target="tblUsers" fileName="Utilisateurs" />
+							</h:commandLink>
+
+							<h:commandLink>
+								<p:graphicImage name="img/pdf.png" width="24" />
+								<p:dataExporter type="pdf" target="tblUsers" fileName="Utilisateurs" />
+							</h:commandLink>
+						</f:facet>
+						<f:facet name="header">Liste des Utilisateurs</f:facet>
+						<p:column headerText="ID" width="10%">
+							<h:outputText value="#{user.id}" />
+						</p:column>
+						<p:column headerText="Nom" width="45%">
+							<h:outputText value="#{user.name}" />
+						</p:column>
+						<p:column headerText="Photo" width="45%">
+							<h:outputText value="#{user.photo}" />
+						</p:column>
+						<p:column headerText="Description" width="45%">
+							<h:outputText value="#{user.descrp}" />
+						</p:column>
+						<p:column headerText="Catgorie" width="45%">
+							<h:outputText value="#{user.categ}" />
+						</p:column>
+						<p:column headerText="Action" width="40%">
+                            <p:commandButton value="Details" action="#{userRestBean.redirectToFilmDetails(user.id)}" />
+   					    </p:column>
+						<f:facet name="footer">				
+							
+						</f:facet>
+					</p:dataTable>
+				</h:form>
+				</p:column>
+			</p:row>
+			
+		</h:panelGrid>
+	</ui:define>
+</ui:composition>
